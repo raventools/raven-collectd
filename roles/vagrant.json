@@ -1,0 +1,12 @@
+{
+	"name": "vagrant",
+	"description": "configure collectd in vagrant",
+	"json_class": "Chef::Role",
+	"default_attributes": {},
+	"override_attributes": {},
+  "chef_type": "role",
+  "run_list": [
+		"raven_collectd"
+	],
+	"env_run_lists": {}
+}

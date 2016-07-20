@@ -1,0 +1,37 @@
+
+
+Hostname    "vagrant1"
+FQDNLookup   true
+BaseDir     "/var/lib/raven-collectd"
+PIDFile     "/var/run/raven-collectd.pid"
+PluginDir   "/opt/raven-collectd/lib/collectd"
+TypesDB     "/opt/raven-collectd/share/collectd/types.db"
+Interval     10
+ReadThreads     5
+
+
+LoadPlugin syslog
+<Plugin syslog>
+	LogLevel info
+</Plugin>
+
+LoadPlugin network
+<Plugin network>
+  Server "10.55.10.10" "25826"
+</Plugin>
+
+LoadPlugin interface
+<Plugin interface>
+  Interface "eth0"
+</Plugin>
+
+
+LoadPlugin cpu
+LoadPlugin df
+LoadPlugin disk
+LoadPlugin load
+LoadPlugin memory
+LoadPlugin processes
+LoadPlugin users
+LoadPlugin swap
+LoadPlugin exec
