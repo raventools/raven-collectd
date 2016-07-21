@@ -1,31 +1,23 @@
 
 
-Hostname    "vagrant1"
-FQDNLookup   true
-BaseDir     "/var/lib/raven-collectd"
-PIDFile     "/var/run/raven-collectd.pid"
-PluginDir   "/opt/raven-collectd/lib/collectd"
-TypesDB     "/opt/raven-collectd/share/collectd/types.db"
-Interval     10
-ReadThreads     5
+Hostname "<%=@hostname %>"
+FQDNLookup true
+BaseDir "/var/lib/raven-collectd"
+PIDFile "/var/run/raven-collectd.pid"
+PluginDir "/opt/raven-collectd/lib/collectd"
+TypesDB	 "/opt/raven-collectd/share/collectd/types.db"
+Interval 10
+ReadThreads 5
 
 
-LoadPlugin syslog
-<Plugin syslog>
-	LogLevel info
-</Plugin>
 
 LoadPlugin network
 <Plugin network>
-  Server "10.55.10.10" "25826"
+	Server "<%=@collectd_server %>" "<%=@collectd_port %>"
 </Plugin>
 
 LoadPlugin interface
-<Plugin interface>
-  Interface "eth0"
-</Plugin>
-
-
+LoadPlugin syslog
 LoadPlugin cpu
 LoadPlugin df
 LoadPlugin disk
@@ -34,4 +26,29 @@ LoadPlugin memory
 LoadPlugin processes
 LoadPlugin users
 LoadPlugin swap
-LoadPlugin exec
+
+<Plugin syslog>
+	LogLevel info
+</Plugin>
+
+<Plugin cpu>
+	ReportByCpu false
+</Plugin>
+
+<Plugin df>
+	FSType "ext2"
+	FSType "ext3"
+	FSType "ext4"
+	FSType "xfs"
+	FSType "nfs"
+</Plugin>
+
+<Plugin interface>
+	Interface "lo"
+	IgnoreSelected true
+</Plugin>
+
+<Plugin disk>
+	Disk "/sd.$/"
+	Disk "/xvd.$/"
+</Plugin>

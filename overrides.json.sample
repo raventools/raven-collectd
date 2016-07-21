@@ -1,0 +1,8 @@
+{
+	"raven_collectd": {
+		"collectd_server": "ip",
+		"collectd_port": "port",
+		"hostname": "agoodhostname"
+	}
+}
+
