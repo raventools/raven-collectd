@@ -7,6 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+remote_file "/etc/yum.repos.d/raven.repo" do
+    source "http://raven-pub-repo.s3-website-us-east-1.amazonaws.com/raven.repo"
+	action :create_if_missing
+end
 
 package "raven-collectd"
 package "raven-collectd-disk"
