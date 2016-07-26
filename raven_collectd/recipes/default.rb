@@ -27,6 +27,10 @@ else
     hostname = node[:raven_collectd][:hostname]
 end
 
+hostname = hostname.gsub!(/[^A-Za-z0-9_-]/,"_")
+hostname = hostname.gsub!(/_+/,"_")
+hostname = hostname.gsub!(/_-_/,"-")
+
 
 template "/opt/raven-collectd/etc/collectd.conf" do
 	source "collectd.conf.erb"
